@@ -169,12 +169,30 @@ void smartAvoid(){
 }
 
 bool obstacle() {
-	if(Tank.readDistanceSensor(1) < 0.2) {
+	if(readUltrasonicSensor() < 20) {
 		brake();
 		return true;
 	}
 	return false;
 }
+
+//begin ultrasonic functions
+double sideX(double yDist, double sensorDist) { //in case of angled sensor
+    return sqrt(sensorDist * sensorDist - yDist * yDist);
+
+}
+double readUltrasonicSensor() {
+    digitalWrite(trigPin, LOW);
+    delayMicroseconds(2);
+    
+    digitalWrite(trigPin, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigPin, LOW);
+    
+    return pulseIn(echoPin, HIGH) * 0.34 / 2; //distance
+}
+//end ultrasonic functions
+
 		
 void brake() {
 	Tank.setLeftMotorPWM(0);
