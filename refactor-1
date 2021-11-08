@@ -1,13 +1,31 @@
+//begin navigation imports
 #include "Enes100.h"
 #include "Tank.h"
 #include <math.h>
+//end nagivation imports
 
+//begin ultrasonic imports
+#define echoPin 2 
+#define trigPin 3 
+//end ultrasonic imports
+
+
+//begin navigation variables 
 const double TOL = 6.0;
 double finalX = 3.75;
 double finalY = 0.4;
+//end navigation variables
+
+//begin ultrasonic variables
+long duration; 
+int distance; 
+//end ultrasonic variables
+
 
 
 void setup() {
+
+    //begin naviation code
 	Enes100.begin("The Busters", CRASH_SITE, 3, 8, 9); // Required before you can use any other Enes100 functions.
 	Tank.begin(); // Required before you can use any other Tank functions.
 	setBothMotors(0);
@@ -27,6 +45,7 @@ void setup() {
         //repeats i times because after obstacle avoidance, function is returned
 		navTo(finalX,finalY);
 	}
+    //end navigation code
 		
 		
 
