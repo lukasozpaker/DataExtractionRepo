@@ -21,6 +21,17 @@ long duration;
 int distance; 
 //end ultrasonic variables
 
+//begin motor variables
+    // Motor A connections
+int enA = 9;
+int in1 = 8;
+int in2 = 7;
+    // Motor B connections
+int enB = 3;
+int in3 = 5;
+int in4 = 4;
+//end motor variables
+
 
 
 void setup() {
