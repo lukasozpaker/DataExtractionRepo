@@ -1,11 +1,11 @@
 // Motor A connections
-int enA = 9;
-int in1 = 8;
-int in2 = 7;
+int enA = 5;
+int in1 = 7;
+int in2 = 8;
 // Motor B connections
-int enB = 3;
-int in3 = 5;
-int in4 = 4;
+int enB = 11;
+int in3 = 12;
+int in4 = 13;
 
 void setup() {
   // All mtot control pins are set to outputs
@@ -17,40 +17,56 @@ void setup() {
   pinMode(in4, OUTPUT);
   
   brake();
+  pivotCW(25);
+  delay(1000);
+  brake();
+  setBothMotors();
+  delay(1000);
+  brake();
 
-  directionControl();
-  delay(1000);
-  speedControl();
-  delay(1000);
 }
 
 void loop() {
   
 }
 
-// Spinning direction of motors
-void directionControl() {
-  setBothAnalog();
+// // Spinning direction of motors
+// void directionControl() {
+//   setBothAnalog();
 
-  setReverseMotors();
-  delay(2000);
+//   setReverseMotors();
+//   delay(2000);
   
-  setBothMotors();
-  delay(2000);
+//   setBothMotors();
+//   delay(2000);
   
-  brake();
+//   brake();
+// }
+
+// // Speed of the motors
+// void speedControl() {
+  
+//   setBothMotors();
+  
+//   accel();
+//   decel();
+  
+  
+//   brake();
+// }
+
+void dumbPivot() {
+  digitalWrite(in1, HIGH);
+  digitalWrite(in2, LOW);
+  digitalWrite(in3, LOW);
+  digitalWrite(in4, HIGH);
 }
 
-// Speed of the motors
-void speedControl() {
-  
-  setBothMotors();
-  
-  accel();
-  decel();
-  
-  
-  brake();
+void pivotCW(int power){
+  analogWrite(in1, power);
+  analogWrite(in2, 0);
+  analogWrite(in3, 0);
+  analogWrite(in4, power);
 }
 
 void setBothAnalog() {
