@@ -7,26 +7,25 @@ int In4 = 13;   // MotorDirectionPin set to pin3
 int ENB = 11;  
 
 
-void setup()
-
-{
- 
-  
+void setup() {
   pinMode(In1, OUTPUT);  // sets the pin as output
   pinMode(In2, OUTPUT); // sets the pin as output
   pinMode(ENA, OUTPUT);
 
-   pinMode(In3, OUTPUT);  // sets the pin as output
+  pinMode(In3, OUTPUT);  // sets the pin as output
   pinMode(In4, OUTPUT); // sets the pin as output
   pinMode(ENB, OUTPUT);
 
+
+
+
   digitalWrite(In1, HIGH);
   digitalWrite(In2,LOW);
-analogWrite(ENA,SPEED);
+  analogWrite(ENA,SPEED);
 
   digitalWrite(In3, HIGH);
   digitalWrite(In4,LOW);
-analogWrite(ENB,SPEED);
+  analogWrite(ENB,SPEED);
 }
 
 
