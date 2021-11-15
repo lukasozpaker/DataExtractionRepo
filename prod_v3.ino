@@ -40,10 +40,10 @@ void setup() {
         forward();
 
         brake();
-        sleep(500);
+        delay(500);
 
         dumbAvoid();
-        sleep(500);
+        delay(500);
     }
     
     
@@ -239,7 +239,7 @@ void dumb90() {
     brake();
     for(int i=0;i<3;i++) {
         pivotCW();
-        sleep(200);
+        delay(200);
     }
     brake();
 }
