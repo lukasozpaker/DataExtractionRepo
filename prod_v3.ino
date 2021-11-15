@@ -15,6 +15,9 @@ int in3 = 5;  //direction 2
 int in4 = 4;  //direction 2
 int enb = 3;  //power 2
 
+//tolerance in degrees
+const double TOL = 6.0;
+
 void setup() {
   pinMode(in1, OUTPUT);  // sets the pin as output
   pinMode(in2, OUTPUT); // sets the pin as output
@@ -238,7 +241,7 @@ void dumbAvoid() {
 void dumb90() {
     brake();
     for(int i=0;i<3;i++) {
-        pivotCW();
+        pivotCW(230);
         delay(200);
     }
     brake();
