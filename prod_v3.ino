@@ -42,7 +42,7 @@ void setup() {
 //     delay(1000);
 //   }
 
-    if(Enes100.updatesLocation() == false) {
+    if(Enes100.updateLocation() == false) {
         pivotCW(COARSE_PIVOT);
     }
     for(int i=0;i<10;i++) {
