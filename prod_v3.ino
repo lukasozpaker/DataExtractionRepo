@@ -17,6 +17,9 @@ int enb = 3;  //power 2
 
 //tolerance in degrees
 const double TOL = 6.0;
+const double COARSE_PIVOT = 100;
+const double FINE_PIVOT = 70;
+const double DEFAULT_SPEED = 170;
 
 void setup() {
   pinMode(in1, OUTPUT);  // sets the pin as output
@@ -39,6 +42,9 @@ void setup() {
 //     delay(1000);
 //   }
 
+    if(Enes100.updatesLocation() == false) {
+        pivotCW(COARSE_PIVOT);
+    }
     for(int i=0;i<10;i++) {
         forward();
 
@@ -48,7 +54,11 @@ void setup() {
         dumbAvoid();
         delay(500);
     }
-    
+    for(int i=0;i<10;i++) { //obstacles return function, number of times before rover stops
+        navTo(3, 2/3);
+    }
+    brake();
+    //mission complete
     
 
 
@@ -72,13 +82,13 @@ void forward(){
 //begin overhead vision system functions
 void turnAbs(double deg, double tol){
 	while((fabs(deg-theta()) > tol)) { //rough control
-		pivotCW(255);
+		pivotCW(COARSE_PIVOT);
 		Enes100.updateLocation();
 		//Enes100.println(theta());
 	}
 	
 	while((fabs(deg-theta()) > tol/5.0)) { //fine adjustment
-		pivotCW(15);
+		pivotCW(FINE_PIVOT);
 		Enes100.updateLocation();
 	}
 	brake();
@@ -98,7 +108,7 @@ void navTo(double x, double y) {
 				smartAvoid();
 				return;
 			}
-			setBothMotors(255);
+			setBothMotors(DEFAULT_SPEED);
 			Enes100.updateLocation();
 			deltaY = y-Enes100.location.y;
 			
@@ -114,7 +124,7 @@ void navTo(double x, double y) {
 				smartAvoid();
 				return;
 			}
-			setBothMotors(255);
+			setBothMotors(DEFAULT_SPEED);
 			Enes100.updateLocation();
 			deltaY = y-Enes100.location.y;
 		}
@@ -131,7 +141,7 @@ void navTo(double x, double y) {
 				smartAvoid();
 				return;
 			}
-			setBothMotors(255);
+			setBothMotors(DEFAULT_SPEED);
 			Enes100.updateLocation();
 			deltaX = x-Enes100.location.x;
 			
@@ -146,7 +156,7 @@ void navTo(double x, double y) {
 				smartAvoid();
 				return;
 			}
-			setBothMotors(255);
+			setBothMotors(DEFAULT_SPEED);
 			Enes100.updateLocation();
 			deltaX = x-Enes100.location.x;
 		}
