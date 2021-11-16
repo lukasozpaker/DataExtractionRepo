@@ -42,18 +42,18 @@ void setup() {
 //     delay(1000);
 //   }
 
-    if(Enes100.updateLocation() == false) {
+    if(Enes100.updateLocation() == false) { //if ovs not there
         pivotCW(COARSE_PIVOT);
     }
-    for(int i=0;i<10;i++) {
-        forward();
+    // for(int i=0;i<10;i++) {
+    //     forward();
 
-        brake();
-        delay(500);
+    //     brake();
+    //     delay(500);
 
-        dumbAvoid();
-        delay(500);
-    }
+    //     dumbAvoid();
+    //     delay(500);
+    // }
     for(int i=0;i<10;i++) { //obstacles return function, number of times before rover stops
         navTo(3, 2/3);
     }
