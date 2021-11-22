@@ -73,29 +73,33 @@ void setup() {
 
     int sw = 0;
 
-    switch(sw) {
-        case 0:
-            forward();
-            break;
-        case 1:
-            navToMissionSite();
-            break;
-        case 2:
-            navPastObstacles();
-            break;
-        case 3:
-            navToDestination();
-            break;
-        case 4:
-            pivotCW(255);
-            break;
-        case 5:
-            pivotCCW(255);
-            break;
-        case 6:
-            fixedForward();
-            break;
+    if(sw == 0) {
+      forward();
     }
+    if(sw == 1) {
+      navToMissionSite();
+    }
+    if(sw == 2) {
+      navPastObstacles();
+    }
+    if(sw == 3) {
+      navToDestination();
+    }
+    if(sw == 4) {
+      pivotCW(255);
+    }
+    if(sw == 5) {
+      pivotCCW(255);
+    }
+    if(sw == 6) {
+      fixedForward();
+    }
+    if(sw == 7) {
+      
+    }
+
+        
+    
     
     
     
