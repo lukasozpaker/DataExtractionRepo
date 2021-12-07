@@ -44,10 +44,12 @@ void setup() {
   Enes100.begin("Ganymede", DATA, 306, 4, 9); //causes around 1 second delay
   Enes100.updateLocation();
   //6.5 tiles by 3.75 tiles : rough arena dimensions
-  //fixed forward moves 1.5 tiles default
-  //orient(turns to angle (north is 90, east (spawn to endzone) is 0, south is 270, west is 180);
+  //fixed forward moves 1.5 tiles default, can take a param that a multiple ie 0.5, 1.2 etc
+  //orient(turns to angle (up is 90, east (spawn to endzone) is 0, down is 270, west is 180);
   //Enes100.updateLocation() updates our OVS data
   //obstacle() returns true if obstacle is within 250 mm of OTV
+
+  //building blocks are: orient(degree), fixedForward(multiplier * 1.5 tile length), obstacle(): returns bool if obs, brake(): brakes, 
   
   
 
@@ -69,12 +71,12 @@ void setup() {
       if(Enes100.location.y >=1) { //if at top half nav to bottom for mission
         orient(270); //orient down
         brake();
-        fixedForward(0.8);//move 0.8x the fixedforward default length, should get us to mission site
+        fixedForward(0.66);//move 0.8x the fixedforward default length, should get us to mission site
         brake();
       } else { //if at bottom half nav to top for mission
         orient(90); //orient up
         brake();
-        fixedForward(0.8);//move 0.8x the fixedforward default length, should get us to mission site
+        fixedForward(0.66);//move 0.8x the fixedforward default length, should get us to mission site
         brake();
       }
       brake();
@@ -139,7 +141,11 @@ void setup() {
         navTo(0.5,1.5);
       }
 
-      for(int i=0;i<3;i++) {
+      for(int i=0;i<3;i++) { 
+        //navto for this needs to be run in a loop bc the 
+        //programmed behavior is to brake and return nothing when
+        //obstacle is encountered, so need to repeatedly
+        //feed in coordinates
         navTo(3.5, 1.5);
       }
       brake();
@@ -283,6 +289,7 @@ void navPastObstacles() {
   for(int i=0;i<4;i++) {
     while(!obstacle()) {
       setBothMotors(150);
+      delay(100);
     }
   }
 
@@ -379,6 +386,8 @@ double deltaAngle(double our, double goal) {
 
 
 void navTo(double x, double y) {
+  Enes100.updateLocation();
+  delay(10);
   double deltaX = x-Enes100.location.x;
   double deltaY = y-Enes100.location.y;
   
