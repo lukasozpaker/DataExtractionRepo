@@ -628,7 +628,7 @@ void defaultAvoid() {
 }
 
 void fullAvoid() {
-    void defaultAvoid() {
+
   //always prefers to be in top third bc that's where the underpass to the destination zone is
   Enes100.println("Smart Avoid");
   if(Enes100.location.y < 2.0/3) { //bottom third
@@ -650,7 +650,7 @@ void fullAvoid() {
   
   
   return;
-}
+
 }
 
 void dumbCW() { //turns 90 cw
